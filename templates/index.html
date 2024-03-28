@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+<!--//top-header-content-->
+{% block title %}Student Portal{% endblock %}
+
+
+{% block content %}
+<section class="w3l-banner-slider-main">
+
+		<!--/banner-slider-->
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="carousel-caption">
+
+							<h3>Motivated by the desire to Achieve</h3>
+							<p>They get their doubts solved instantly, 24x7</p>
+							<div class="button-4 mx-auto">
+								<div class="eff-4"></div>
+								<a href="/project"> View Projects</a>
+							  </div>
+
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item item2">
+					<div class="container">
+						<div class="carousel-caption">
+							<h3>One internship can
+								change everything.</h3>
+							<p>We believe that every student is unique</p>
+							<div class="button-4 mx-auto">
+								<div class="eff-4"></div>
+								<a href="/project"> View Projects</a>
+							  </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="carousel-item item4">
+					<div class="container">
+						<div class="carousel-caption">
+							<h3>Better learning
+								for better results.</h3>
+							<p>We believe that every student is unique</p>
+							<div class="button-4 mx-auto">
+								<div class="eff-4"></div>
+								<a href="/project"> View Projects</a>
+							  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+	</div>
+	<!--//banner-slider-->
+
+</section>
+
+
+<!--w3l-banner-slider-main-->
+
+<!-- //w3l-banner-slider-main -->
+<section class="w3l-content-6">
+	<!-- /content-6-section -->
+	<div class="content-6-mian py-5">
+		<div class="container py-lg-5">
+
+			<div class="row title-content">
+				<div class="col-lg-4 title-left">
+					<h3 class="hny-title">Which project do you want to Choose today?</h3>
+				</div>
+				<div class="col-lg-8 title-info">
+				  <p>&nbsp;</p>
+				  <p>&nbsp; &nbsp; &nbsp; &nbsp;Our Industry Project  allows candidates the unique opportunity to achieve a valuable work experience in almost any industry across New Zealand. It is designed both for those completing an Internship as part of their study (for which you will receive academic credits), or for those wishing to gain work exposure in their field of interest.&nbsp;</p>
+					<p>&nbsp; &nbsp; &nbsp; An Internship is an excellent way to gain the skills and experience required to launch your career. All placements are initial un-paid positions, but might turn into employment. They are available at any time of the year and their duration, location and other specifics are left entirely up to you.</p>
+                </div>
+			</div>
+
+			<div class="content-info-in row mt-md-5 mt-4">
+				<div class="col-lg-3 col-md-6 imghrs">
+					<a class="imghr" href="#"><img src="{{ url_for('static', filename='images/1.jpg') }}" class="img-fluid" alt="">
+						<div class="details"><span class="title">Development</span><span class="info">Add Description</span></div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 imghrs">
+					<a class="imghr" href="#"><img src="{{ url_for('static', filename='images/2.jpg') }}" class="img-fluid" alt="">
+						<div class="details"><span class="title">Graphic Design</span><span class="info">Add Description</span></div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 imghrs">
+					<a class="imghr" href="#"><img src="{{ url_for('static', filename='images/3.jpg') }}" class="img-fluid" alt="">
+						<div class="details"><span class="title">Languages</span><span class="info">Add Description</span></div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 imghrs">
+					<a class="imghr" href="#"><img src="{{ url_for('static', filename='images/4.jpg') }}" class="img-fluid" alt="">
+						<div class="details"><span class="title">Photography</span><span class="info">Add Description</span></div>
+					</a>
+				</div>
+			</div>
+
+
+
+		</div>
+
+	</div>
+	</div>
+</section>
+
+<section class="w3l-customers-6">
+	<!--/customers -->
+	<div class="customers-6-infhny py-5">
+		<div class="container py-lg-5">
+
+				<div class="row title-content mb-5">
+						<div class="col-lg-4 title-left">
+							<h3 class="hny-title">Success Story</h3>
+						</div>
+						<div class="col-lg-8 title-info">
+							<p>Introducing some Lincoln student success stories</p>
+						</div>
+					</div>
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Carousel indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ol>
+						<!-- Wrapper for carousel items -->
+						<div class="carousel-inner">
+							<div class="item carousel-item active">
+								<div class="img-box"><img src="{{ url_for('static', filename='images/c1.jpg') }}" alt=""></div>
+								<p class="testimonial">LU student</p>
+								<p class="overview"><b>Michael Holz</b>Seo Analyst at <a href="#">Company Exp.</a></p>
+								<div class="star-rating">
+									<ul class="list-inline">
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star-o"></span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="item carousel-item">
+								<div class="img-box"><img src="{{ url_for('static', filename='images/c2.jpg') }}" alt=""></div>
+								<p class="testimonial">LU student</p>
+								<p class="overview"><b>Paula Wilson</b>Media Analyst at <a href="#">Company Exp.</a></p>
+								<div class="star-rating">
+									<ul class="list-inline">
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star-o"></span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="item carousel-item">
+								<div class="img-box"><img src="{{ url_for('static', filename='images/c3.jpg') }}" alt=""></div>
+								<p class="testimonial">LU student</p>
+								<p class="overview"><b>Antonio Moreno</b>Web Developer at <a href="#">Company Exp.</a></p>
+								<div class="star-rating">
+									<ul class="list-inline">
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star"></span></li>
+										<li class="list-inline-item"><span class="fa fa-star-half-o"></span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- Carousel controls -->
+						<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+							<span class="fa fa-angle-left"></span>
+						</a>
+						<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+							<span class="fa fa-angle-right"></span>
+						</a>
+					</div>
+		  </div>
+		<!--//customers -->
+	</div>
+</section>
+
+
+{% endblock  %}

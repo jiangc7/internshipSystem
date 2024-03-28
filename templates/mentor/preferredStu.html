@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="padding-top:50px;min-height: 700px">
+        <div class="container widthFull">
+            {% if session['role'] ==1 %}
+                <button class="btn btn-primary" style="margin-top: 20px;margin-bottom: 20px" onclick="preferStudents()">Edit Preference
+                </button> {% else %}{% endif %}
+            <table id="myTablePreStudent" class="display">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Student No</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Skills</th>
+                    <th>CV</th>
+                    <th>Will</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var ulr = '/student/getMentorPreferred'
+        var btn = [
+            {
+                "btnName": "Profile",
+                "func": "checkStudentProfile"
+            },
+              {
+                "btnName": "Remove",
+                "func": "removeMentorStudent"
+            }
+
+        ];
+        $(function () {
+            renderDataTable('#myTablePreStudent', ulr, [
+                {"data": null},
+                {"data": "first_name"},
+                {"data": "last_name"},
+                {"data": "student_id_no"},
+                {"data": "phone"},
+                {"data": "email"},
+                {"data": "skill"},
+                {
+                    "data": "cv", render: function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="/download/' + data + '">' + data + '</a>';
+                        }
+                        return data;
+                    }
+                },
+                {"data": "will"}
+            ], true, true, 9, btn);
+        })
+
+    </script>
+{% endblock %}

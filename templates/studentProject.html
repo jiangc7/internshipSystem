@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+    <body>
+    <div style="padding-top:50px;min-height: 700px">
+        <div class="container widthFull">
+            <table id="myTableOne" class="display">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Project Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">number of students</th>
+                    <th scope="col">project type</th>
+                    <th scope="col">start date</th>
+                    <th scope="col">end date</th>
+                    <th scope="col">remain number of students</th>
+                    <th scope="col">company name</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            {% if  session['role'] ==2 %}
+                <button class="btn btn-primary" onclick="addPreferredProject()">Edit Preference</button>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        var btn = []
+        {% if session['role'] ==0 %}
+            btn = [{
+                "btnName": "Preferred Students",
+                "func": "checkPreferredStudent"
+            }
+            ]
+        {% endif %}
+        {% if session['role'] ==1 %}
+            btn = [{
+                "btnName": "Preferred Students",
+                "func": "checkPreferredStudent"
+            },
+                {
+                    "btnName": "Edit",
+                    "func": "alert"
+                }
+            ]
+
+            ;
+        {% endif %}
+       {% if session['role'] ==2 %}
+            btn = [{
+                "btnName": "Remove",
+                "func": "removePreproject"
+            },
+                {
+                    "btnName": "Edit",
+                    "func": "alert"
+                }
+            ]
+
+            ;
+        {% endif %}
+
+
+
+        $(function () {
+            renderDataTable('#myTableOne', '/studentProject/getPreferredProject', [
+                {"data": null},
+                {"data": "rank"},
+                {"data": "project_title"},
+                {"data": "description"},
+                {"data": "number_of_student"},
+                {"data": "type_name"},
+                {"data": "start_date","width":"10%"},
+                {"data": "end_date","width":"10%"},
+                {"data": "remain_number_of_student"},
+                {"data": "company_name"},
+            ], true, true, 10, btn);
+
+        })
+
+    </script>
+    <!-- //footer -->
+    </body>
+
+{% endblock %}

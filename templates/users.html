@@ -1,0 +1,29 @@
+
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+<!--go back button-->
+<div style="text-align: left; margin: 20px;">
+    <a href="{{ url_for('home') }}">Back</a>
+</div>
+
+<div class="container">
+    <div>
+       {% for user in users %}
+         {{ user['email'] }}
+       {% endfor %}
+    {% if errorMsg %}
+        {{ errorMsg }}
+    {% endif %}
+    </div>
+</div>
+
+
+<div style="text-align: center;">
+    <a href="/register" style="color: black;"><button>Join Us</button></a>
+</div>
+
+
+{% endblock %}

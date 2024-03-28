@@ -1,0 +1,292 @@
+<!doctype html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>LU Industry Project Placement </title>
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-starter.css') }}">
+    <!-- Template CSS -->
+    <link href="http://fonts.googleapis.com/css?family=Muli:300,300i,400,500,600,700,800,900&display=swap"
+          rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="http://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.2.2/dist/messagebox.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.2.2/dist/messagebox.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="../static/js/main.js"></script>
+    <!-- Template CSS -->
+
+</head>
+<body>
+
+<!--/top-header-content-->
+<section class="w3l-top-header-content">
+    <div class="hny-top-menu">
+        <div class="top-hd">
+            <div class="container-fluid backgroundColor">
+                <div class="row">
+
+                    {% if not session['user_id'] %}
+                        <ul class="social-top col-md-7 signInLeft">
+                            <li class="log-link mr-3"><a class="sign-in" href="/login"><span class="fa fa-user"></span>
+                                Sign In</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="social-top col-md-7 signInLeft">
+                            <li class="log-link mr-3 "><a class="sign-in" href="#"><span
+                                    class="fa fa-user">Hello {{ session['name'] }}</span>
+                            </a></li>
+                        </ul>
+                        <ul class="accounts col-md-5 signInLeft">
+                            <li class="log-link mr-3 "><a class="sign-in" href="#"><span
+                                    class=""> {{ session['email'] }}</span>
+                            </a>
+                                <a class="sign-in" href="/users/logOut"><span class=""> Log Out </span>
+                                </a></li>
+                        </ul>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!--//top-header-content-->
+
+<!--w3l-banner-slider-main-->
+<section class="w3l-banner-slider-main w3l-inner-page-main">
+    <div class="breadcrumb-infhny">
+        <header class="top-headerhny">
+            <!--/nav-->
+            <nav class="navbar navbar-expand-lg navbar-light fill">
+                <div class="container-fluid">
+                    <img class="navbar-brand" src="../static/images/lincolnlogo.jpg" style="width: 100px;height: 100px">
+                    <a class="navbar-brand" href="index.html">
+                        <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>LU</label>
+                        Industry Project Placement</a>
+                    <!-- if logo is image enable this
+                      <a class="navbar-brand" href="#index.html">
+                        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                      </a> -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {% if not session['user_id'] and session['role'] %}
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-lg-auto ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/project">Project</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact">Contact</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if session['role'] == 2 %}
+                        <!--student role-->
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-lg-auto ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/register">My profile</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/questionRoute/getAll">Placement Survey</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/company/getAll">Companies</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/student/project">Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" onclick="goPreferredProject()">Preferred Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/match/studentMatch">Matched Projects</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if session['role'] == 0 %}
+                        <!--staff role-->
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-lg-auto ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link"  onclick="addSpeedInterview()">Speed Interview</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/student/getAll">Students</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/mentor/getAll">Mentors</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/company/getAll">Companies</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/mentor/project">View Projects</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/staffreport1">Matching Process</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if session['role'] == 1 %}
+                        <!--mentor role-->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-lg-auto ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/mentor/profile">View Profile </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/companyprofile">Company Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/mentor/project">Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/student/getAll">Students</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/mentor/prestudent">Preferred Student</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/match/mentorMatch">Matched Students</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contactstaff">Contact staff</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </nav>
+            <!--//nav-->
+        </header>
+
+    </div>
+    <!--//banner-slider-->
+</section>
+
+<section class="content">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash"></div>
+    {% endfor %}
+    {% block content %}
+
+
+    {% endblock %}
+</section>
+
+
+<!-- footer -->
+<footer class="footer bg-light" id="bottom">
+    <section class="w3l-footer-16">
+        <div class="w3l-footer-16-main py-5">
+            <div class="">
+                <div class="row">
+                    <div class="col-lg-4 column">
+                        <div class="row">
+                            <div class="col-md-8 column">
+
+                                <a class="logo-2" href="index.html">
+                                    <label class="lohny-2"><span class="fa fa-graduation-cap" aria-hidden="true"></span>LU</label>
+                                    Industry Project Placement</a>
+
+                                <div class="ad-text-inf">
+                                    <p><span class="color-hny">Address :</span> Lincoln University,Cantebary, NZ</p>
+                                </div>
+                                <div class="ad-text-inf">
+                                    <p><span class="color-hny">Email :</span> <a href="mailto:lincolnplacementstaff@gmail.com">lincolnplacementstaff@gmail.com&nbsp;</a>
+                                    </p>
+                                </div>
+                                <div class="ad-text-inf">
+                                    <p><span class="color-hny">Phone :</span> <a href="tel:+142 5897555">0273344770&nbsp;</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 column">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 column column3 mt-lg-0 mt-4">
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 column column4 mt-lg-0 mt-4">
+                        <h3>Newsletter </h3>
+                        <div class="end-column">
+                            <h4>Subscribe Here Now</h4>
+                            <form action="#" class="subscribe" method="post">
+                                <input type="email" name="email" placeholder="Email Address" required="">
+                                <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
+                            </form>
+                            <p>Subscribe to our mailing list and get updates to your email inbox.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
+                    <div class="columns text-lg-left text-center">
+                        <p><a target="_blank" href="https://campingmap.site/">Copyright &copy; LU Applied computing
+                            Group 21</a>
+                            <a target="_blank" href="https://campingmap.site/">&nbsp;</a>
+                        </p>
+                    </div>
+                    <div class="columns-2 mt-md-0 mt-3">
+                        <ul class="social">
+                            <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#github"><span class="fa fa-github" aria-hidden="true"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</footer>
+
+</body>
+</html>

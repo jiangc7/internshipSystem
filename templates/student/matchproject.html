@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+{% block content %}
+    <body>
+    <div style="padding-top:50px;min-height: 700px">
+        <div class="container widthFull">
+            <table id="myTableProject" class="display">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Project Title</th>
+                    <th scope="col">project type</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Mentor</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Company name</th>
+                    <th scope="col">Company website</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+    <script>
+        {% if message %}
+            var msg = '{{ message }}'
+            $.alert(msg)
+        {% endif %}
+
+        var btn = []
+
+
+        $(function () {
+            renderDataTable('#myTableProject', '/match/studentMatchList', [
+                {"data": null},
+                {"data": "project_title"},
+                {"data": "type_name"},
+                {"data": "description"},
+                {"data": "mentor"},
+                {"data": "email"},
+                {"data": "company_name"},
+                {"data": "website"},
+                {"data": "status"},
+            ], true, true, 9, btn);
+
+        })
+
+    </script>
+
+    </body>
+
+{% endblock %}

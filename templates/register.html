@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <body>
+    <!-- //portfolio -->
+
+    <section class="w3l-apply-6">
+        <!-- /apply-6-->
+        <div class="apply-info py-5 ">
+            <div class="marginSides">
+                <div class="containerSlim paddingtop6rem">
+                    <div class="apply-grids-info ">
+                        <form id="regiForm" class="row g-3">
+                            <div class="justify-content-center">
+                                <div class="input-group mb-3 justify-content-center ">
+                                    <div>
+                                        <input type="hidden" name="user_id" id="user_id"
+                                                {% if user %} value="{{ user['user_id'] }}" {% endif %}
+                                               class="form-control">
+                                        <div class="form-group left">
+                                            <input type="text" hidden name="role" id="role" class="form-control"
+                                                   placeholder="" value="2">
+                                            <label for="firstname">*First name</label>
+                                            <input type="text" name="firstname" id="firstname"
+                                                    {% if user %} value="{{ user['first_name'] }}" {% endif %}
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group right">
+                                            <label for="lastname">*Last name</label>
+                                            <input type="text" name="lastname"
+                                                    {% if user %} value="{{ user['last_name'] }}" {% endif %}
+                                                   id="lastname" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3 justify-content-center">
+                                    <div>
+                                        <div class="form-group left">
+                                            <label for="alternativeName">Alternative name</label>
+                                            <input type="text" name="alternativeName" id="alternativeName"
+                                                   style="min-width: 164px"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group right">
+                                            <label>*Phone</label>
+                                            <input type="text" name="phone" id="phone"
+                                                    {% if user %} value="{{ user['phone'] }}" {% endif %}
+                                                   class="form-control">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3 justify-content-center {% if user %}hide {% endif %}">
+                                    <div>
+                                        <div class="form-group left">
+                                            <label>*Student Number</label>
+                                            <input type="text" name="studentNo" id="studentNo"
+                                                    {% if user %} value="{{ user['student_id_no'] }}"
+                                                   readonly  {% endif %}
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group right">
+                                            <label>*Email</label>
+                                            <input type="email" name="email" class="form-control"
+                                                   style="min-width: 164px"
+                                                    {% if user %} disabled value="{{ user['email'] }}" {% endif %}
+                                                   id="email">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3 justify-content-center {% if user %}hide {% endif %}">
+                                    <div>
+
+                                        <div class="form-group left  ">
+                                            <label for="password">*Password</label>
+                                            <input type="password" name="password"
+                                                   class="form-control" id="password" onblur="checkPassword(this)">
+                                        </div>
+                                        <div class="form-group right  ">
+                                            <label for="password">*Confirm Password</label>
+                                            <input type="password" name="compassword"
+                                                   class="form-control" id="compassword" onblur="checkPassword(this)">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3 justify-content-center">
+                                    <div>
+                                        <div class="form-group left">
+                                            <label>*Date of Birth</label>
+                                            <input type="date" name="dob" class="form-control" style="min-width: 189px"
+                                                    {% if user %} value="{{ user['dateofbirth'] }}" {% endif %}
+                                                   id="dob">
+                                        </div>
+                                        <div class="form-group right">
+                                            <div class="input-group mb">
+                                                <div class="form-group left">
+                                                    <label>*Gender</label>
+                                                    <select name="gender" id="gender" style="min-width: 164px">
+                                                        <option value="0"  {% if user and user['gender']== 0 %}
+                                                                selected  {% endif %}>
+                                                            Male
+                                                        </option>
+                                                        <option value="1" {% if user and user['gender']== 1 %}
+                                                                selected  {% endif %}>
+                                                            Female
+                                                        </option>
+                                                        <option value="2" {% if user and user['gender']== 2 %}
+                                                                selected  {% endif %}>
+                                                            Neutral
+                                                        </option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {% if user %}
+
+                                    <div class="input-group mb-3 justify-content-center">
+                                        <div>
+                                            <div class="form-group left" style="max-width: 199px">
+                                                <label class="mb-2" for="cv">*CV</label>
+                                                <input type="file" id="userCV" name="userCV" accept="application/pdf"
+                                                       onchange="uploadFile()">
+                                                <span id="text" name="fileLocation"> {% if user and user['cv'] %}
+                                                    <a href="/download/{{ user['cv'] }}"> {{ user['cv'] }} </a>{% endif %}</span>
+                                            </div>
+
+                                            <div class="form-group right">
+
+                                                <label>*Email</label>
+                                                <input type="email" name="email" class="form-control"
+                                                       style="min-width: 164px"
+                                                        {% if user %} disabled value="{{ user['email'] }}" {% endif %}
+                                                       id="email">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb justify-content-center">
+                                        <div>
+                                            <div class="form-group left">
+                                                <label>*Skills</label>
+                                                <div class="input-group" style="width: 600px" id="inpChkBox">
+                                                    {% for sk in studentSkills %}
+                                                        <div class="form-check form-check-inline">
+                                                            <input type="checkbox" id="{{ sk.id }}"
+                                                                    {% if sk['student_id'] %}
+                                                                   checked
+                                                                    {% endif %}
+                                                                   class="form-check-input chkBoxMargin"
+                                                                   name="stu_skills"
+                                                                   value="{{ sk['id'] }}">{{ foo }}
+
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                {{ sk.skill_name }}
+                                                            </label>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+
+                                {% endif %}
+
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col" style="text-align: -webkit-center">
+                                            {% if user %}
+                                                <input type="button" class="btn btn-primary"
+                                                       onclick="addOrUpdateUser(2)"
+                                                       value="Update"
+                                                       name="submitBtn"/>
+                                            {% else %}
+                                                <input type="button" class="btn btn-primary"
+                                                       onclick="addOrUpdateUser(2)"
+                                                       value="JOIN NOW"
+                                                       name="submitBtn"/>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col" style="text-align: -webkit-center">
+                                            <button class="btn btn-secondary" type="reset">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    <!-- //footer -->
+    </body>
+     <script>
+    $(function (){
+        console.log("123123")
+        $.ajax({
+            url: "/speed/getOneByIdAndType",
+            type: "get",
+        }).then(result => {
+            if (result.code != 'ok') {
+                $.ajax({
+                    url: "/speed/getEvent",
+                    type: "GET",
+                }).then(result => {
+                    console.log(result)
+                    $.confirm({
+                        theme: 'dark',
+                        title: 'Speed Interview',
+                        content: '<br>Would you like to participate the Speed network Interview on ' + result.interviewDate + ' at ' + result.location + '?' +
+                            '<br><br>By pressing "No", you will be logout from our system.',
+                        buttons: {
+                            Yes: async function () {
+                                $.ajax({
+                                    url: "/speed/add",
+                                    type: "get",
+                                    dataType: "JSON",
+                                    data:{event_id:result.event_id}
+                                }).then(result => {
+
+                                })
+
+                            },
+                            No: function () {
+                                setTimeout(2000)
+                                location.href = "/users/logOut"
+
+                            }
+
+
+                        }
+                    })
+                })
+            }else {
+              {% if errorMsg %}
+                    var errorMsgs = "{{  errorMsg  }}";
+                    $.alert(errorMsgs)
+              {% endif %}
+            }
+        })
+    })
+
+    </script>
+{% endblock %}

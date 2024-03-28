@@ -1,0 +1,85 @@
+{% extends "mentor/mentorbase.html" %}
+{% block content %}
+
+
+<body>
+    <!-- //portfolio -->
+    <section class="w3l-apply-6">
+        <!-- /apply-6-->
+        <div class="apply-info py-5">
+            <div class="containerSlim py-lg-5">
+                <div class="apply-grids-info widthRegi">
+                    <label class="mb-1">Update Project Profile</label><p>
+                        {% for profile in profile %}
+                    <form role="form" method="post" action="/mentor/Update">
+                        <div class="sideContainer">
+                           
+
+     
+                          
+                            <div class="form-group left">
+                                
+                                <input type="text" hidden name="mentorid" id="role" class="form-control"
+                                       placeholder="" value="{{profile['mentor_id']}}">
+                                <input type="text" hidden name="role" id="role" class="form-control"
+                                       placeholder="" value="2">
+                                <label for="firstname">*First name {{profile['mentor_Id']}} </label>
+                                <input type="text" name="firstname" id="firstname" class="form-control" value="{{profile['first_name']}}">
+                            </div>
+                            <div class="form-group right">
+                                <label for="lastname">*Last name </label>
+                                <input type="text" name="lastname" id="lastname" class="form-control" value="{{profile['last_name']}}">
+                            </div>
+                        </div>
+
+                        <div class="sideContainer">
+
+                            <div class="form-group mb-4">
+                                <label>*Phone</label>
+                                <input type="text" name="phone" id="phone" class="form-control" value="{{profile['phone']}}">
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="mb-2">*Email</label>
+                            <input type="email" name="email" class="form-control" id="email" value="{{profile['email']}}">
+                        </div>
+                        <div class="sideContainer">
+                            <div class="form-group mb-4 left">
+                                <label class="mb-2">Summary</label>
+                                <input type="text" name="summary" class="input-group-text" id="dob" value="{{profile['summary']}}">
+
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">UPDATE NOW</button>
+
+                        <button type="reset" class="btn btn-primary" href="#">Reset</button>
+
+                    </form>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- //footer -->
+    </body>
+
+
+
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<!-- disable body scroll which navbar is in active -->
+<script>
+	$(function () {
+		$('.navbar-toggler').click(function () {
+			$('body').toggleClass('noscroll');
+		})
+	});
+</script>
+<!-- disable body scroll which navbar is in active -->
+<!-- //jQuery-Photo-filter-lightbox-portfolio-plugin -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+{% endblock %}

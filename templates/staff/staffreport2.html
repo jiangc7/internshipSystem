@@ -1,0 +1,271 @@
+<!-- Name: CP Jiang / Student ID: 1148594 -->
+<!-- Use Bootstrap nav class to give the nav bar a modern view -->
+<!-- Added a project page for role mentor -->
+
+<link href="static/css/custom-styles.css" rel="stylesheet" />
+
+<style>
+  .box {
+    height: 50px;
+    width: 200px;
+    float: left;
+  }
+
+  .icon {
+    float: left;
+  }
+
+  .label {
+    float: right;
+  }
+</style>
+{% extends "staff/staffbase.html" %}
+{% block content %}
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<body>
+<div id="container" style="width:100%">
+ 
+    <div id="header" style="background-color:#FFA500;height: 100px;width:100%">
+    <h1>Dashboard </h1></div>
+     
+    <div id="menu" style="background-color:#FFD700;height: 1200px;;width:280px;float:left;">
+    
+      <div style="margin:25px 50px 75px 30px;">
+         <div class="box" style="height: 80px;">
+             <div class="v3_14 icon" style="float:left;"></div>
+             <span class="v3_16 label" style="float:right;">Report Charts</span>
+         </div>
+         <div class="box">
+               <a class="active-menu" href="/staffreport2">
+             <div class="v3_19 icon" style="float:left;"></div>
+             <span class="v3_20 label" style="float:right;">final report</span>
+               </a>
+         </div>
+         <div class="box">
+              <a class="active-menu" href="/staffreport">
+             <div class="v3_23 icon" style="float:left;"></div>
+             <span class="v3_24 label" style="float:right;">Company Status</span>
+              </a>
+         </div>
+         <div class="box">
+             <a class="active-menu" href="/staffreport1">
+             <div class="v3_26 icon" style="float:left;"></div>
+             <span class="v3_27 label" style="float:right;">Match report</span>
+             </a>
+         </div>
+         <div class="box">
+          <a class="active-menu" href="/staffreport3">
+            <div class="v3_29 icon" style="float:left;"></div>
+            <span class="v3_30 label" style="float:right;">Skill Statistics</span>
+             </a>
+         </div>
+       </div>
+      </div>
+     
+    
+    
+          <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div style="margin-left: 350px;height:1100px;width:1240px;display: flex; justify-content:space-around;flex-wrap: wrap">
+        <div id="main1" style="height:600px;width:500px;justify-content:space-around;"></div>
+        <div id="main" style="height:800px;width:600px;justify-content:space-around;"></div>
+    </div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        //report 1
+
+var chartDom1 = document.getElementById('main1');
+var myChart1 = echarts.init(chartDom1);
+var option1;
+
+option1 = {
+  xAxis: {
+    data: ['placements', 'students', 'company']
+  },
+  yAxis: {},
+  dataGroupId: '',
+  animationDurationUpdate: 500,
+  series: {
+    type: 'bar',
+    id: 'sales',
+    data: [
+      {
+        value: 15,
+        groupId: 'placements'
+      },
+      {
+        value: 21,
+        groupId: 'students'
+      },
+      {
+        value: 8,
+        groupId: 'company'
+      }
+    ],
+    universalTransition: {
+      enabled: true,
+      divideShape: 'clone'
+    }
+  }
+};
+const drilldownData = [
+  {
+    dataGroupId: 'placements',
+    data: [
+      ['initial', 15],
+      ['match', 10],
+      ['selected', 8],
+      ['available', 7]
+    ]
+  },
+  {
+    dataGroupId: 'students',
+    data: [
+      ['all', 21],
+      ['has project', 1],
+      ['selected', 12],
+      ['available', 8]
+    ]
+  },
+  {
+    dataGroupId: 'company',
+    data: [
+      ['number', 8],
+      ['project', 12],
+      ['initial', 15],
+      ['available', 8]
+    ]
+  }
+];
+myChart1.on('click', function (event) {
+  if (event.data) {
+    var subData = drilldownData.find(function (data) {
+      return data.dataGroupId === event.data.groupId;
+    });
+    if (!subData) {
+      return;
+    }
+    myChart1.setOption({
+      xAxis: {
+        data: subData.data.map(function (item) {
+          return item[0];
+        })
+      },
+      series: {
+        type: 'bar',
+        id: 'sales',
+        dataGroupId: subData.dataGroupId,
+        data: subData.data.map(function (item) {
+          return item[1];
+        }),
+        universalTransition: {
+          enabled: true,
+          divideShape: 'clone'
+        }
+      },
+      graphic: [
+        {
+          type: 'text',
+          left: 50,
+          top: 20,
+          style: {
+            text: 'Back',
+            fontSize: 18
+          },
+          onclick: function () {
+            myChart1.setOption(option1);
+          }
+        }
+      ]
+    });
+  }
+});
+
+option1 && myChart1.setOption(option1);
+
+
+        
+
+
+
+        //report 2
+
+ var ROOT_PATH = 'https://echarts.apache.org/examples';
+
+var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
+
+myChart.showLoading();
+$.get('../static/js/flare.json', function (data) {
+  myChart.hideLoading();
+  data.children.forEach(function (datum, index) {
+    index % 2 === 0 && (datum.collapsed = true);
+  });
+  myChart.setOption(
+    (option = {
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+      },
+      series: [
+        {
+          type: 'tree',
+          data: [data],
+          top: '1%',
+          left: '7%',
+          bottom: '1%',
+          right: '20%',
+          symbolSize: 7,
+          label: {
+            position: 'left',
+            verticalAlign: 'middle',
+            align: 'right',
+            fontSize: 9
+          },
+          leaves: {
+            label: {
+              position: 'right',
+              verticalAlign: 'middle',
+              align: 'left'
+            }
+          },
+          emphasis: {
+            focus: 'descendant'
+          },
+          expandAndCollapse: true,
+          animationDuration: 550,
+          animationDurationUpdate: 750
+        }
+      ]
+    })
+  );
+});
+
+option && myChart.setOption(option);
+
+
+
+ 
+
+
+    </script>
+
+
+ 
+
+     
+    <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+    lincoln university </div>
+     
+    </div>
+
+
+
+
+  
+
+
+</body>
+
+
+{% endblock %}

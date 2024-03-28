@@ -1,0 +1,84 @@
+{
+ "name": "Lincoln",
+ "children": [
+  {
+   "name": "replacement",
+   "children": [
+   
+   ]
+  },
+  {
+   "name": "Deloitte",
+   "children": [
+    {"name": "Elvis Jiang", "value": 100},
+    {"name": "Rita Liu", "value": 95},
+    {
+     "name": "Didi Liu",
+     "children": [
+      {"name": "Java", "value": 5},
+      {"name": "Html", "value": 4},
+      {"name": "database ", "value": 5},
+      {"name": "UX", "value": 5},
+      {"name": "python", "value": 5}
+     ]
+    },
+    {"name": "Alex liu", "value": 85},
+    {"name": "Alex Shao", "value": 89},
+    {"name": "Tween", "value": 75}
+   ]
+  },
+  {
+   "name": "PWC",
+   "children": [
+    {"name": "Flynn wang", "value": 99},
+    {"name": "Jade zhang", "value": 80},
+    {"name": "Dani jiang", "value": 77},
+    {"name": "Eric li", "value": 60}
+   ]
+  },
+  {
+   "name": "ABC Technologies",
+   "children": [
+    {"name": "FlareVis", "value": 80}
+   ]
+  },
+  {
+   "name": "XYZ Solutions",
+   "children": [
+    {"name": "fly wang", "value": 78},
+    {"name": "Mike down", "value": 90},
+    {"name": "Nike li", "value": 67},
+    {"name": "saturn jiang", "value": 76}
+   ]
+  },
+  
+  {
+   "name": "AgResearch",
+   "children": [
+    {"name": "Nathan li", "value": 100},
+    {"name": "Alis Ma", "value": 85},
+    {"name": "Max Ma", "value": 99},
+    {"name": "Hellen Ni", "value": 90}
+   ]
+  },
+  {
+   "name": "available students",
+   "children": [
+    {"name": "matt wu", "value": 100},
+    {"name": "Colors liu", "value": 67},
+    {"name": "CP jiang", "value": 100},
+    {"name": "Xiao niu", "value": 99},
+    {
+     "name": "Leo wu",
+     "children": [
+      {"name": "C++", "value": 5},
+      {"name": "Devops", "value": 5}
+     ]
+    },
+
+    {"name": "Ali gao", "value": 66}
+   ]
+  }
+  
+ ]
+}

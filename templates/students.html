@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="padding-top:50px;min-height: 700px">
+        {% if session['role'] ==1 %}
+            <div class="container widthFull">
+            <button class="btn btn-primary" style="margin-top: 20px;margin-bottom: 20px" onclick="preferStudents()">Prefer students</button> {% else %}{% endif %}
+        <table id="myTableStudent" class="display">
+            <thead>
+            <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Student No</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Skills</th>
+                <th>CV</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <script>
+        var ulr = {% if pid %} '/student/getAllJson?pid=' + {{ pid }} {% else %}'/student/getAllJson'{% endif %}
+        var btn = [
+            {
+                "btnName": "View Profile",
+                "func": "checkStudentProfile"
+            }
+        ];
+        $(function () {
+            renderDataTable('#myTableStudent', ulr, [
+                {"data": null},
+                {"data": "first_name"},
+                {"data": "last_name"},
+                {"data": "student_id_no"},
+                {"data": "phone"},
+                {"data": "email"},
+                {"data": "skill"},
+                {
+                    "data": "cv", render: function (data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a href="/download/' + data + '">' + data + '</a>';
+                        }
+                        return data;
+                    }
+                },
+                {"data": "placement_status"}
+            ], true, true, 9, btn);
+        })
+        {% if session['role'] ==1 %}
+             $(function (){
+        console.log("123123")
+        $.ajax({
+            url: "/speed/getOneByIdAndType",
+            type: "get",
+        }).then(result => {
+            if (result.code != 'ok') {
+                $.ajax({
+                    url: "/speed/getEvent",
+                    type: "GET",
+                }).then(result => {
+                    console.log(result)
+                    $.confirm({
+                        theme: 'dark',
+                        title: 'Speed Interview',
+                        content: '<br>Would you like to participate the Speed network Interview on ' + result.interviewDate + ' at ' + result.location + '?' +
+                            '<br><br>By pressing "No", you will be logout from our system.',
+                        buttons: {
+                            Yes: async function () {
+                                $.ajax({
+                                    url: "/speed/add",
+                                    type: "get",
+                                    dataType: "JSON",
+                                    data:{event_id:result.event_id,type:1}
+                                }).then(result => {
+
+                                })
+
+                            },
+                            No: function () {
+                                setTimeout(2000)
+                                location.href = "/users/logOut"
+
+                            }
+
+
+                        }
+                    })
+                })
+            }else {
+              {% if errorMsg %}
+                    var errorMsgs = "{{  errorMsg  }}";
+                    $.alert(errorMsgs)
+              {% endif %}
+            }
+        })
+    })
+        {% endif %}
+    </script>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <body>
+
+    <script>
+
+
+    </script>
+
+    <script>
+
+    </script>
+
+    <section class="w3l-apply-6">
+        <div class="apply-info py-5 noTopPadding">
+            <div class="marginSides">
+                <div class="containerSlim py-lg-5 paddingtop6rem">
+                    <div class="apply-grids-info widthQuestion">
+                        <form id="queForm">
+                            <div class="justify-content-center">
+                                {% for (qu) in questions %}
+                                    {% set hideIndex = 2 %}
+                                    <div class="sideContainer {% if loop.index > hideIndex %} hide{% endif %}">
+                                        <div class="form-group mb-4">
+                                            {% set quesionJson = qu.question %}
+                                            <div class="form-group">
+                                                <label>{{ loop.index }}.{{ quesionJson.title }}</label>
+                                                {% if quesionJson.type=="0" %}
+                                                    <input type="text" id="{{ qu.id }}"
+                                                           name="que_{{ qu.id }}" class="form-control question"
+                                                           value="
+
+
+
+
+                                                                   {% if qu.question_answer %}{{ qu.question_answer }}{% endif %}">
+                                                {% elif quesionJson.type =="1" %}
+                                                    <select name="que_{{ qu.id }}" {% if loop.index ==1 %}
+                                                            onchange="changeIntention(this)" {% endif %}>
+                                                        {% for foo in quesionJson.option %}
+                                                            {% if qu.question_answer %}
+                                                                <option value="{{ loop.index0 }}"
+                                                                        {% if loop.index0 == qu.question_answer| int %}
+                                                                        selected {% endif %}>  {{ foo }}</option>
+                                                            {% else %}
+                                                                <option value="{{ loop.index0 }}">{{ foo }}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                {% elif quesionJson.type =="2" %}
+                                                    {% for foo in quesionJson.option %}
+                                                        <span style="display: block;max-width: 500px;
+                                                        word-wrap: break-word; overflow-wrap: break-word;">
+                                            <input type="checkbox" id="{{ qu.id }}"
+                                                    {% if qu.question_answer %}
+                                                        {% set my_array = qu.question_answer.split(',') %}
+                                                        {% set int_list = my_array | map('int') %}
+
+                                                        {% if loop.index0 in int_list %} checked {% endif %}
+                                                    {% endif %}
+                                                   name="que_{{ qu.id }}"
+                                                   value="{{ loop.index0 }}">{{ foo }}</span>
+
+                                                    {% endfor %}
+                                                {% elif quesionJson.type=="3" %}
+                                                    <textarea id="{{ qu.id }}"
+                                                              name="que_{{ qu.id }}" class="form-control"
+                                                              class="question"
+                                                              style="height: 200px">{% if qu.question_answer %}
+                                                        {{ qu.question_answer }}{% endif %}</textarea>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <span onclick="hideQuestions('prev')" id="btnPrev"
+                                      class="btn btn-primary hide">Previous </span>
+                                <span onclick="hideQuestions('next')" id="btnNext" class="btn btn-primary">Next </span>
+                                <span onclick="submitQA()" id="submitQABtn" class="btn btn-primary hide">Submit </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+    </body>
+    <script>
+    $(function (){
+        console.log("123123")
+        $.ajax({
+            url: "/speed/getOneByIdAndType",
+            type: "get",
+        }).then(result => {
+            if (result.code != 'ok') {
+                $.ajax({
+                    url: "/speed/getEvent",
+                    type: "GET",
+                }).then(result => {
+                    console.log(result)
+                    $.confirm({
+                        theme: 'dark',
+                        title: 'Speed Interview',
+                        content: '<br>Would you like to participate the Speed network Interview on ' + result.interviewDate + ' at ' + result.location + '?' +
+                            '<br><br>By pressing "No", you will be logout from our system.',
+                        buttons: {
+                            Yes: async function () {
+                                $.ajax({
+                                    url: "/speed/add",
+                                    type: "get",
+                                    dataType: "JSON",
+                                    data:{event_id:result.event_id}
+                                }).then(result => {
+
+                                })
+
+                            },
+                            No: function () {
+                                setTimeout(2000)
+                                location.href = "/users/logOut"
+
+                            }
+
+
+                        }
+                    })
+                })
+            }else {
+              {% if errorMsg %}
+                    var errorMsgs = "{{  errorMsg  }}";
+                    $.alert(errorMsgs)
+              {% endif %}
+            }
+        })
+    })
+
+    </script>
+
+{% endblock %}

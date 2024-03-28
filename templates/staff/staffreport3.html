@@ -1,0 +1,142 @@
+<!-- Name: CP Jiang / Student ID: 1148594 -->
+<!-- Use Bootstrap nav class to give the nav bar a modern view -->
+<!-- Added a project page for role mentor -->
+
+<link href="static/css/custom-styles.css" rel="stylesheet" />
+
+<style>
+  .box {
+    height: 50px;
+    width: 200px;
+    float: left;
+  }
+
+  .icon {
+    float: left;
+  }
+
+  .label {
+    float: right;
+  }
+</style>
+
+{% extends "staff/staffbase.html" %}
+{% block content %}
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<body>
+<div id="container" style="width:100%">
+ 
+    <div id="header" style="background-color:#FFA500;height: 100px;width:100%">
+    <h1>Dashboard </h1></div>
+     
+    <div id="menu" style="background-color:#FFD700;height: 1200px;;width:280px;float:left;">
+    
+      <div style="margin:25px 50px 75px 30px;">
+         <div class="box" style="height: 80px;">
+             <div class="v3_14 icon" style="float:left;"></div>
+             <span class="v3_16 label" style="float:right;">Report Charts</span>
+         </div>
+         <div class="box">
+               <a class="active-menu" href="/staffreport2">
+             <div class="v3_19 icon" style="float:left;"></div>
+             <span class="v3_20 label" style="float:right;">final report</span>
+               </a>
+         </div>
+         <div class="box">
+              <a class="active-menu" href="/staffreport">
+             <div class="v3_23 icon" style="float:left;"></div>
+             <span class="v3_24 label" style="float:right;">Company Status</span>
+              </a>
+         </div>
+         <div class="box">
+             <a class="active-menu" href="/staffreport1">
+             <div class="v3_26 icon" style="float:left;"></div>
+             <span class="v3_27 label" style="float:right;">Match report</span>
+             </a>
+         </div>
+         <div class="box">
+             <a class="active-menu" href="/staffreport3">
+             <div class="v3_29 icon" style="float:left;"></div>
+             <span class="v3_30 label" style="float:right;">Skill Statistics</span>
+             </a>
+         </div>
+       </div>
+      </div>
+     
+    
+      <div style="margin-left: 400px;height:50px;width:800px;display: flex; justify-content:space-around;flex-wrap: wrap"float:left>
+    
+    </div>
+          <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div style="margin-left: 400px;height:1100px;width:800px;display: flex; justify-content:space-around;flex-wrap: wrap"float:left>
+        <div id="main" style="height:600px;width:500px;justify-content:space-around;"></div>
+        <!-- <div id="main1" style="height:600px;width:500px;justify-content:space-around;"></div> -->
+    </div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
+
+option = {
+  title: {
+    text: 'skill Statistics'
+  },
+  legend: {
+    data: ['skill required', 'acture skills']
+  },
+  radar: {
+    // shape: 'circle',
+    indicator: [
+      { name: 'Java', max: 6500 },
+      { name: 'HTML CSS', max: 16000 },
+      { name: 'Python', max: 30000 },
+      { name: 'Github agile', max: 38000 },
+      { name: 'Database', max: 52000 },
+      { name: 'User Experience', max: 25000 }
+    ]
+  },
+  series: [
+    {
+      name: 'Budget vs spending',
+      type: 'radar',
+      data: [
+        {
+          value: [5200, 13000, 20000, 35000, 30000, 18000],
+          name: 'skill required'
+        },
+        {
+          value: [3100, 14000, 28000, 26000, 32000, 21000],
+          name: 'acture skills'
+        }
+      ]
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+
+
+
+
+    </script>
+
+
+ 
+
+     
+    <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+    lincoln university </div>
+     
+    </div>
+
+
+
+
+  
+
+
+</body>
+
+
+{% endblock %}

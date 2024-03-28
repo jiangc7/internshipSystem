@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- //portfolio -->
+    <section class="w3l-apply-6">
+        <!-- /apply-6-->
+        <div class="apply-info py-5">
+            <div class="marginSides">
+                <div class="containerSlim paddingtop6rem">
+                    <div class="apply-grids-info " style="padding: 50px">
+                             <div class="justify-content-center">
+                                 <div>
+                        <form action="/updatecompanyprofile" method="POST">
+
+                                <input type="hidden" name="companyid" value="{{ company[0]['id'] }}">
+                                <label for="companyname" style="min-width: 150px">Company name:</label>
+                                <input type="text" id="cname" name="company_name"
+                                       value="{{ company[0]['company_name'] }}"><br>
+                                <label for="region" style="min-width: 150px">Region:</label>
+                                <input type="text" id="region" name="region" value="{{ company[0]['region'] }}"><br>
+                                <label for="city" style="min-width: 150px">City:</label>
+                                <input type="text" id="city" name="city" value="{{ company[0]['city'] }}"><br>
+                                <label for="street" style="min-width: 150px">Street:</label>
+                                <input type="text" id="street" name="street" value="{{ company[0]['street'] }}"><br>
+                                <label for="website" style="min-width: 150px">Website:</label>
+                                <input type="text" id="webname" name="website"
+                                       value="{{ company[0]['website'] }}"><br><br>
+                                <input type="submit" value="Update">
+
+                        </form></div>
+                                   </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

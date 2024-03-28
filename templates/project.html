@@ -1,0 +1,162 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<body>
+<!-- portfolio -->
+
+<section class="w3-gallery">
+	<div class="porfolio-inf py-5">
+		<div class="container pt-lg-5 pb-lg-4">
+			<div class="row title-content">
+				<div class="col-lg-4 title-left">
+					<h3 class="hny-title">Internship Projects Introducing</h3>
+				</div>
+				<div class="col-lg-8 title-info">
+					<p>Today's employer's care about one thing - work experience. The most important skills are learned on the job. That's why our internships in New Zealand are designed to train you for the job market, by the job market.</p>
+				</div>
+			</div>
+			<div class="port-text-cards text-left mt-5 mb-3">
+				<button class="btn active filter-button" data-filter="all">All</button>
+				<button class="btn filter-button" data-filter="photo">Technical</button>
+				<button class="btn filter-button" data-filter="graphic">Management</button>
+				<button class="btn filter-button" data-filter="webdesign">Business</button>
+			</div>
+			<br />
+
+			<div class="row">
+				<div class="col-md-3 filter photo">
+					<div class="each-item">
+						<a href="#"><img class="port-image img-fuild" src="assets/images/p1.jpg" alt="" /></a>
+
+					</div>
+					<div class="course-content">
+						<div class="course-info">
+							<h6><a class="course-instructor" href="#">Christina Rose</a></h6>
+							<a href="#" class="course-titlegulp-wrapper">
+								<h3 class="course-title" data-gal="prettyPhoto[gallery]">Development</h3>
+							</a>
+						</div>
+						<div class="course-divider">
+							<div class="course-meta grid"><span class="course-students" title=""><span
+										class="fa fa-user" aria-hidden="true"></span> 46</span>
+								<span class="course-reviews" title=""><span class="fa fa-thumbs-o-up"
+										aria-hidden="true"></span> 14</span>
+
+							</div>
+							<button class="price-course btn"> 4 person </button>
+
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 filter graphic photo">
+					<div class="each-item">
+						<a href="#"><img class="port-image img-fuild" src="assets/images/p2.jpg" alt="" /></a>
+
+					</div>
+					<div class="course-content">
+						<div class="course-info">
+							<h6><a class="course-instructor" href="#">Christina Rose</a></h6>
+							<a href="#" class="course-title-wrapper">
+								<h3 class="course-title" data-gal="prettyPhoto[gallery]">Creative Art</h3>
+							</a>
+						</div>
+						<div class="course-divider">
+							<div class="course-meta grid"><span class="course-students" title=""><span
+										class="fa fa-user" aria-hidden="true"></span> 26</span>
+								<span class="course-reviews" title=""><span class="fa fa-thumbs-o-up"
+										aria-hidden="true"></span> 24</span>
+
+							</div>
+							<button class="price-course btn"> 3 person </button>
+
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 filter webdesign">
+					<div class="each-item">
+						<a href="#"><img class="port-image img-fuild" src="assets/images/p3.jpg" alt="" /></a>
+					</div>
+					<div class="course-content">
+						<div class="course-info">
+							<h6><a class="course-instructor" href="#">Christina Rose</a></h6>
+							<a href="#" class="course-title-wrapper">
+								<h3 class="course-title" data-gal="prettyPhoto[gallery]">Interior Design</h3>
+							</a>
+						</div>
+						<div class="course-divider">
+							<div class="course-meta grid"><span class="course-students" title=""><span
+										class="fa fa-user" aria-hidden="true"></span> 36</span>
+								<span class="course-reviews" title=""><span class="fa fa-thumbs-o-up"
+										aria-hidden="true"></span> 34</span>
+
+							</div>
+							<button class="price-course btn"> 2 person </button>
+
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 filter graphic photo">
+					<div class="each-item">
+						<a href="#"><img class="port-image img-fuild" src="assets/images/p4.jpg" alt="" /></a>
+					</div>
+					<div class="course-content">
+						<div class="course-info">
+							<h6><a class="course-instructor" href="#">Christina Rose</a></h6>
+							<a href="#" class="course-title-wrapper">
+								<h3 class="course-title" data-gal="prettyPhoto[gallery]">Tech and Coding</h3>
+							</a>
+						</div>
+						<div class="course-divider">
+							<div class="course-meta grid"><span class="course-students" title=""><span
+										class="fa fa-user" aria-hidden="true"></span> 46</span>
+								<span class="course-reviews" title=""><span class="fa fa-thumbs-o-up"
+										aria-hidden="true"></span> 14</span>
+
+							</div>
+							<button class="price-course btn"> 5 person </button>
+
+
+						</div>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+		<!-- //gallery container -->
+	</div>
+</section>
+
+
+<!-- //portfolio -->
+  
+
+  
+</section>
+<!-- //footer -->
+</body>
+
+
+
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+<!-- //jQuery-Photo-filter-lightbox-portfolio-plugin -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+{% endblock %}

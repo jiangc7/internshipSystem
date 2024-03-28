@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="padding-top:50px;min-height: 700px">
+        <div class="container widthFull">
+            <button class="btn btn-primary" style="margin-top: 20px;margin-bottom: 20px" onclick="addNewMentor()">Add new Mentor</button>
+
+            <table id="myTableOne" class="display">
+                <thead>
+                <tr>
+                    <th>Mentor Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Company</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <script>
+        var flag = {% if session['role'] ==0 %} true {% else %} false{% endif %}
+        var btn = [
+            {
+                "btnName": "Edit ",
+                "func": "editMentor"
+            }, {
+                "btnName": "Delete",
+                "func": "deleteMentor"
+            }
+            ];
+        $(function () {
+
+            renderDataTable("#myTableOne", "/mentor/getAllJson", [
+                {"data": "first_name"},
+                {"data": "phone"},
+                {"data": "email"},
+                {"data": "company_name"},
+            ], true,false, 4, btn)
+        })
+
+    </script>
+{% endblock %}

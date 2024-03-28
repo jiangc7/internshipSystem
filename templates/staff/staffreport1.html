@@ -1,0 +1,187 @@
+<!-- Name: CP Jiang / Student ID: 1148594 -->
+<!-- Use Bootstrap nav class to give the nav bar a modern view -->
+<!-- Added a project page for role mentor -->
+
+
+<link href="static/css/custom-styles.css" rel="stylesheet"/>
+
+<style>
+    .box {
+        height: 50px;
+        width: 200px;
+        float: left;
+    }
+
+    .icon {
+        float: left;
+    }
+
+    .label {
+        float: right;
+    }
+</style>
+{% extends "staff/staffbase.html" %}
+{% block content %}
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<body>
+<div id="container" style="width:100%">
+ 
+    <div id="header" style="background-color:#FFA500;height: 100px;width:100%">
+    <h1>Dashboard </h1></div>
+     
+    <div id="menu" style="background-color:#FFD700;height: 1200px;;width:280px;float:left;">
+    
+      <div style="margin:25px 50px 75px 30px;">
+         <div class="box" style="height: 80px;">
+             <div class="v3_14 icon" style="float:left;"></div>
+             <span class="v3_16 label" style="float:right;">Report Charts</span>
+         </div>
+         <div class="box">
+               <a class="active-menu" href="/staffreport2">
+             <div class="v3_19 icon" style="float:left;"></div>
+             <span class="v3_20 label" style="float:right;">final report</span>
+               </a>
+         </div>
+         <div class="box">
+              <a class="active-menu" href="/staffreport">
+             <div class="v3_23 icon" style="float:left;"></div>
+             <span class="v3_24 label" style="float:right;">Company Status</span>
+              </a>
+         </div>
+         <div class="box">
+             <a class="active-menu" href="/staffreport1">
+             <div class="v3_26 icon" style="float:left;"></div>
+             <span class="v3_27 label" style="float:right;">Match report</span>
+             </a>
+         </div>
+         <div class="box">
+          <a class="active-menu" href="/staffreport3">
+            <div class="v3_29 icon" style="float:left;"></div>
+            <span class="v3_30 label" style="float:right;">Skill Statistics</span>
+             </a>
+         </div>
+       </div>
+      </div>
+
+
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div>
+
+            <button style="margin-left: 300px;margin-top: 100px" class="btn btn-primary" onclick="processMatching()">
+                Process
+                Matchs
+            </button>
+              <div id="loading" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div style="margin-left: 100px;height:1500px;display: flex; justify-content:space-around;flex-wrap: wrap"
+             float:left>
+            <div id="main" style="height:65%;width:95%;justify-content:space-around;"></div>
+        </div>
+
+
+        <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+        <body>
+        <div id="container" style="width:100%">
+
+
+            <script type="text/javascript">
+                $.ajax({
+                    url: "/match/getMatch",
+                    type: "GET",
+                    dataType: "JSON"
+                }).then(function (response) {
+                    response_data = JSON.parse(response)
+
+                    var chartDom = document.getElementById('main');
+                    var myChart = echarts.init(chartDom);
+                    var option;
+                    const hours = response_data.index
+                    const days = response_data.columns;
+                    // prettier-ignore
+                    console.log("hours", hours)
+                    console.log("days", days)
+                    const data = response_data.data
+
+                        .map(function (item) {
+                            console.log(item)
+                            return [item[1], item[0], item[2] || '-'];
+                        });
+                    option = {
+                        tooltip: {
+                            show: false,
+                        },
+                        grid: {
+                            height: '50%',
+                            top: '10%',
+                            left: '35%'
+                        },
+                        xAxis: {
+                            length: 60,
+                            type: 'category',
+                            data: hours,
+                            axisLabel: {
+                                interval: 0
+                            },
+                            splitArea: {
+                                show: true
+                            }
+
+                        },
+                        yAxis: {
+                            length: 60,
+                            type: 'category',
+                            data: days,
+                            splitArea: {
+                                show: true
+                            }
+                        },
+                        visualMap: {
+                            min: 0,
+                            max: 4,
+                            calculable: true,
+                            orient: 'horizontal',
+                            left: 'center',
+                            bottom: '20%'
+                        },
+                        series: [
+                            {
+                                type: 'heatmap',
+                                data: data,
+                                label: {
+                                    show: true,
+                                    formatter: function (params) {
+                                        // 在这里可以自定义标签内容
+                                        let s = params.value[2];
+                                        let returnValue = "";
+                                        if (s >= 4) {
+                                            returnValue = "match!"
+                                        }
+
+                                        return returnValue;
+                                    }
+                                },
+                                emphasis: {
+                                    itemStyle: {
+                                        shadowBlur: 10,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    option && myChart.setOption(option);
+                })
+            </script>
+            <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+                lincoln university
+            </div>
+        </div>
+
+
+        </body>
+
+ </div>
+{% endblock %}

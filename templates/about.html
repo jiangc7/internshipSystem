@@ -1,0 +1,86 @@
+<!-- Name: CP Jiang / Student ID: 1148594 -->
+<!-- root route for public access -->
+<!-- Use Bootstrap nav class to give the nav bar a modern view -->
+<!-- Added a about page -->
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<body>
+<section class="w3l-wecome-content-6">
+	<!-- /content-6-section -->
+	  <div class="ab-content-6-mian py-5">
+			 <div class="container py-lg-5">
+					<div class="welcome-grids row">
+							<div class="col-lg-6 mb-lg-0 mb-5">
+								<h6>About Us</h6>
+								<h3 class="hny-title">
+									Improving Lives Through Learning
+									</h3>
+								<p class="my-4">     Our Internship Program allows candidates the unique opportunity to achieve a valuable work experience in almost any industry across New Zealand. It is designed both for those completing an Internship as part of their study (for which you will receive academic credits), or for those wishing to gain work exposure in their field of interest. 
+
+									</p>
+								<p class="mb-4">An Internship is an excellent way to gain the skills and experience required to launch your career. All placements are initial un-paid positions, but might turn into employment. They are available at any time of the year and their duration, location and other specifics are left entirely up to you.</p>
+								<div class="button-4-pink">
+									<div class="eff-4-pink"></div>
+									<a href="services.html"> Read More</a>
+								  </div>
+							</div>
+							<div class="col-lg-6 welcome-image">
+								<img src="assets/images/ab.jpg" class="img-fluid" alt="" />
+							</div>	
+						
+						</div>	
+				 
+				 </div>
+			 </div>
+	 </section>
+ 
+
+<section class="w3l-content-5">
+	<!-- /content-6-section -->
+	  <div class="content-5-main">
+			 <div class="container">
+					 <div class="content-info-in row">
+							 <div class="content-gd col-lg-6">
+									 <h3 class="hny-title two">
+									
+We work hard to prepare every student for their professional life</h3>
+							 </div>
+							 <div class="content-gd col-lg-6">
+									<p></p>
+									 <p></p>
+									
+							 </div>
+							
+					 </div>
+				 
+				 </div>
+			 </div>
+	 </section>
+   <!-- //content-6-section -->
+
+  
+
+
+</section>
+<!-- //footer -->
+</body>
+
+
+
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+<!-- //jQuery-Photo-filter-lightbox-portfolio-plugin -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+{% endblock %}

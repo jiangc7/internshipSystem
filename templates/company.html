@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="padding-top:50px;min-height: 700px">
+        <div class="container widthFull">
+            <table id="myTableCompany" class="display">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>Region</th>
+                    <th>Website</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <script>
+        var flag = {% if session['role'] ==0 %} true {% else %} false{% endif %}
+         var btn = [
+            {
+                "btnName": "View Project",
+                "func": "viewCompanyProject"
+            }
+        ];
+        $(function () {
+            renderDataTable('#myTableCompany', '/company/getAllJson', [
+                {"data": "company_name"},
+                {"data": "street"},
+                {"data": "city"},
+                {"data": "region"},
+                {"data": "website"},
+            ],true,false,5,btn);
+        })
+
+    </script>
+{% endblock %}

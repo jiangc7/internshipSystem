@@ -1,0 +1,91 @@
+<!-- Name: CP Jiang / Student ID: 1148594 -->
+<!-- root route for public access -->
+<!-- Use Bootstrap nav class to give the nav bar a modern view -->
+<!-- Added a home page -->
+
+{% extends "base.html" %}
+{% block content %}
+    <script>
+        {% if data %}
+            var data = '{{ data }}'
+            $.alert(data)
+        {% endif %}
+    </script>
+    <body>
+    <!-- //portfolio -->
+    <section class="w3l-apply-6">
+        <!-- /apply-6-->
+        <div class="apply-info py-5">
+            <div class="container py-lg-5">
+                <div class="apply-grids-info row">
+                    <div class="apply-gd-left col-lg-7">
+                        <label>Welcome Our EduIntership</label>
+                        <h4>Login to Internship</h4>
+                        <p class="para-apply"></p>
+                        <div class="row mt-lg-5 mt-4">
+                            <div class="col-md-6 sub-apply mt-4">
+                                <div class="apply-sec-info">
+                                    <div class="appyl-sub-icon">
+                                        <span class="fa fa-line-chart"></span>
+                                    </div>
+                                    <div class="appyl-sub-icon-info">
+                                        <h5><a href="#">Empower Mentors</a></h5>
+                                        <p></p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 sub-apply mt-4">
+                                <div class="apply-sec-info">
+                                    <div class="appyl-sub-icon">
+                                        <span class="fa fa-clock-o"></span>
+                                    </div>
+                                    <div class="appyl-sub-icon-info">
+                                        <h5><a href="#">Unlimit Projects</a></h5>
+                                        <p></p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="apply-gd-right col-lg-5 mt-lg-0 mt-5">
+
+                        <div class="apply-form p-md-5 p-4 mx-auto bg-white mw-100">
+                            <form action="/users/login" method="post">
+                                <div class="form-group">
+                                    <label>User name</label>
+
+                                    <input type="text" name="email" class="form-control" id="validationDefault01"
+                                           placeholder=""
+                                           required="">
+                                </div>
+
+
+                                <div class="form-group mb-4">
+                                    <label class="mb-2">Password</label>
+                                    <input type="password" name="password" class="form-control" id="password1"
+                                           placeholder="" required="">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="mb-2"><a onclick="checksendEmail()">forgot your password?</a></label>
+                                </div>
+                                <button type="submit" class="btn btn-primary submit">Login Now</button>
+                                <a class="btn btn-primary" href="/register">Sign Up</a>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- //footer -->
+    </body>
+
+
+
+{% endblock %}

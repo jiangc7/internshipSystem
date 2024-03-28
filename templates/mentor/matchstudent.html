@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    <body>
+    <div style="padding-top:50px;min-height: 700px">
+        <div id="loading" style="display: none;"></div>
+        <div class="container widthFull">
+                <table id="myTableProject" class="display">
+                    <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col">Project Title</th>
+                        <th scope="col">Date Of Birth</th>
+                        <th scope="col">Preferred name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">CV</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+        <script>
+            var btn = [{
+                "btnName": "Interview",
+                "func": "checkInterview"
+            }
+            ]
+            $(function () {
+                renderDataTable('#myTableProject', '/match/mentorMatchList', [
+                    {"data": "sNAME"},
+                    {"data": "project"},
+                    {"data": "dateofbirth"},
+                    {"data": "preferred_name"},
+                    {
+                        "data": "email", render: function (data, type, row, meta) {
+                            if (type === 'display') {
+                                data = '<a href="mailto:' + data + '">' + data + '</a>';
+                            }
+                            return data;
+                        }
+                    },
+                    {"data": "phone"},
+                    {
+                        "data": "cv", render: function (data, type, row, meta) {
+                            if (type === 'display') {
+                                data = '<a href="/download/' + data + '">' + data + '</a>';
+                            }
+                            return data;
+                        }
+                    },
+                    {"data": "status"},
+                ], true, false, 8, btn);
+
+            })
+
+        </script>
+        <!-- //footer -->
+    </body>
+
+{% endblock %}
